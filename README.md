@@ -391,7 +391,7 @@ To setup Forge,
 
 - Enter the URL for your in house Docker Registry:
 - Enter the username for the Registry
-- Enter <password> for the password.
+- Enter the password.
 - Finally,  Enter the organization, again <organization>.
 
 With Forge configured, type:
