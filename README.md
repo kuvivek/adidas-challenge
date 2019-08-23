@@ -248,7 +248,7 @@ Kubernetes and manifests
 =========================
 I have created a Kubernetes manifest file for the webapp service.
 
-![Deployment_YAML](file:///home/kuvivek/Pictures/deployment_YAML.png)
+![Deployment_YAML](images/deployment_YAML.png)
 
 The manifest file is written in YAML, and contains some key bits of information about your service, including a pointer to the Docker image, memory/CPU limits,
 and ports exposed.
@@ -265,8 +265,7 @@ The Container Registry
 
 In order to run an image in Kubernetes cluster, it needs to get a copy of the image.
 
-This is typically done through a container registry: a central service that hosts images. There are dozens of options for container registries, for both on-premise
-and cloud-only use cases.
+This is typically done through a container registry: a central service that hosts images. There are dozens of options for container registries, for both on-premise and cloud-only use cases.
 
 For the time being I am pushing the built image in the dockerhub website. Setting the URL for the Registry as an environment variable with the command:
 
@@ -319,7 +318,9 @@ Then, I pushed the image created to the Docker Registry:
     v1: digest: sha256:28834a890bccdfbb20dd38afbac38087df0f2ba86fe94929b89951508c8b7ff9 size: 1578
     [kuvivek@vivekcentos adidas]$ 
 
-[Now, Its time to get the service running in Kubernetes.
+Now, Its time to get the service running in Kubernetes. Current State on the hosted Kubernetes without any pods are shown below in the screenshot.
+![Initial State](images/State1.png)
+
 
 Running the service in Kubernetes
 =================================
@@ -328,19 +329,20 @@ In the deployment.yaml file IMAGE_URL need to be updated. I have kept the templa
 
     sed -i -e 's;IMAGE_URL;'kuvivek/adidas_demo:v1';' deployment.yaml
 
+Keeping both template and the actual deployment manifest file with updated the IMAGE_URL placeholder.
 
 Now, Deploying the service on the hosted kubernetes:
 
     kubectl apply -f deployment.yaml
-![deployment_apply](file:///home/kuvivek/Pictures/kubernetes_deployment_apply.png)
+![deployment_apply](images/kubernetes_deployment_apply.png)
 
 Here I am telling Kubernetes to actually process the information in the manifest.
 
-We can see the services running:
+We can see the services running using the below command
 
 > kubectl get services
 
-or 
+or alternatively
 
 > kubectl get svc
 
@@ -348,7 +350,7 @@ Now, we want to send an HTTP request to the service. Most Kubernetes services ar
 
 > kubectl get pods
 
- or  
+ or In short
 
 > kubectl get po
 
@@ -409,7 +411,3 @@ As previously, obtain the NodePort assigned to our deployment.
     export PORT=$(kubectl get svc hello-webapp -o go-template='{{range.spec.ports}}{{if .nodePort}}{{.nodePort}}{{"\n"}}{{end}}{{end}}')
 
 And then check out the new welcome message, using the curl command as mentioned above.
-
-
-
-
