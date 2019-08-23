@@ -389,10 +389,10 @@ Let's try using Forge to do this deployment. We need to do a quick setup of Forg
 
 To setup Forge, 
 
-Enter the URL for your in house Docker Registry:
-Enter the username for the Registry
-Enter root for the password.
-Finally,  Enter the organization, again root.
+- Enter the URL for your in house Docker Registry:
+- Enter the username for the Registry
+- Enter <password> for the password.
+- Finally,  Enter the organization, again <organization>.
 
 With Forge configured, type:
 
